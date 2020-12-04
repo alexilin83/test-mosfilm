@@ -5,55 +5,41 @@
     }
     .game__question {
         overflow: hidden;
-        margin: 0 0 20px;
-        border-radius: 5px;
+        margin: 0 0 40px;
         text-align: left;
     }
     .game__question-header {
-        margin: 0 0 20px;
+        margin: 0 0 40px;
         text-align: center;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 26px;
+        line-height: 1.2;
         :global(i) {
             display: block;
             margin-bottom: 10px;
         }
     }
-    .game__question-photo {
-        position: relative;
-        height: 400px;
-        background-color: #000;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: cover;
-        border-radius: 5px 5px 0 0;
-        z-index: 1;
-        small {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            display: block;
-            width: 100%;
-            padding: 30px 15px 10px;
-            background: linear-gradient(transparent, #000);
-            text-align: right;
-            color: rgba(255, 255, 255, .5);
-            font-size: 12px;
-        }
-    }
     .game__question-comment {
         position: absolute;
-        left: 20px;
+        left: 50%;
         top: 50%;
-        right: 20px;
-        padding: 20px;
+        width: 300px;
+        height: 400px;
+        background-repeat: no-repeat;
+        background: 50% 50%;
+        background-size: contain;
         border-radius: 5px;
-        background: rgba(0,0,0,.7);
-        transform: translateY(-50%);
-        font-size: 16px;
+        transform: translate(-50%, -50%);
+        @for $i from 1 through 25 {
+            &_#{$i} {
+                background-image: url('/images/poster-#{$i}.jpg');
+            }
+        }
     }
     .game__answers {
+        overflow: hidden;
         background: #fff;
+        border-radius: 5px;
     }
     .game__answer {
         position: relative;
@@ -96,9 +82,6 @@
         .game__question-header {
             font-size: 14px;
         }
-        .game__question-photo {
-            height: 300px;
-        }
         .game__question-comment {
             left: 10px;
             right: 10px;
@@ -122,14 +105,6 @@
 
 <div class="game__question" class:game__question_done="{isCurrentQuestionDone}">
     <header class="game__question-header">{@html questions[currentQuestion - 1].title}</header>
-    <div class="game__question-photo game__question-photo_{currentQuestion}">
-        {#if questions[currentQuestion - 1].photoAuthor}
-            <small>{questions[currentQuestion - 1].photoAuthor}</small>
-        {/if}
-        {#if isCurrentQuestionDone}
-            <div class="game__question-comment" in:fly="{{duration: 1500, y: 30, opacity: 0, easing: quintOut}}">{questions[currentQuestion - 1].comment}</div>
-        {/if}
-    </div>
     <div class="game__answers">
         {#each questions[currentQuestion - 1].answers as answer, i}
             <div
@@ -142,4 +117,7 @@
             </div>
         {/each}
     </div>
+    {#if isCurrentQuestionDone}
+        <div class="game__question-comment game__question-comment_{currentQuestion}" in:fly="{{duration: 1500, y: 30, opacity: 0, easing: quintOut}}"></div>
+    {/if}
 </div>

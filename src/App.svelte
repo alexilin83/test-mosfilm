@@ -11,12 +11,6 @@
         color: #fff;
         line-height: 1.4;
     }
-    .game__title {
-        margin: 0 0 20px;
-        font-weight: 700;
-        font-size: 36px;
-        line-height: 1;
-    }
     .game__desc {
         margin: 0 0 45px;
         font-size: 16px;
@@ -28,6 +22,7 @@
         background: $active-color;
         border: none;
         border-radius: 3px;
+        color: #000;
         font-weight: bold;
         font-size: 20px;
         line-height: 1;
@@ -48,6 +43,13 @@
         }
         &_reload {
             margin-bottom: 30px;
+        }
+        &[disabled] {
+            opacity: .5;
+            cursor: default;
+            &:hover {
+                transform: none;
+            }   
         }
     }
     .game__layer {
@@ -74,16 +76,6 @@
         border-radius: 5px;
         color: #000;
         text-align: center;
-    }
-    .game__result-title {
-        margin: 0 0 15px;
-        font-weight: bold;
-        font-size: 36px;
-        line-height: 1;
-        color: inherit;
-        b {
-            color: $active-color;
-        }
     }
     .game__result-desc {
         font-size: 16px;
@@ -135,9 +127,6 @@
         .game {
             line-height: 1.2;
         }
-        .game__title {
-            font-size: 30px;
-        }
         .game__desc {
             font-size: 14px;
         }
@@ -155,10 +144,6 @@
         }
         .game__layer_intro .ya-share2 {
             padding: 10px 15px;
-        }
-        .game__result-title {
-            margin-bottom: 10px;
-            font-size: 30px;
         }
         .game__result-desc {
             font-size: 14px;
@@ -237,16 +222,13 @@
     }
     function setResult() {
         isGameFinished = true;
-        if (points < 5) {
+        if (points < 11) {
             result = results[0];
-        } else if (points < 7) {
+        } else if (points < 21) {
             result = results[1];
         } else {
             result = results[2];
         }
-    }
-    function declOfNum(number, words) {  
-        return words[(number % 100 > 4 && number % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(number % 10 < 5) ? number % 10 : 5]];
     }
 </script>
 
@@ -271,15 +253,14 @@
                     isCurrentQuestionDone={isCurrentQuestionDone}
                     on:click={handleAnswerClick}
                 />
-                {#if isCurrentQuestionDone}
+                {#if isGameStarted && !isGameFinished}
                     <footer class="game__layer-footer">
-                        <button class="game__btn" on:click={handleNext}>{nextBtnText}</button>
+                        <button class="game__btn" disabled={!isCurrentQuestionDone} on:click={handleNext}>{nextBtnText}</button>
                     </footer>
                 {/if}
             {:else}
                 <div class="game__result">
-                    <div class="game__result-title">Вы ответили на<br> <b>{points}</b> {declOfNum(points, ['вопрос', 'вопроса', 'вопросов'])} из <b>{questions.length}</b></div>
-                    <div class="game__result-desc">{result} Подробнее на <a href="https://dictant.rgo.ru" target="_blank">dictant.rgo.ru</a>.</div>
+                    <div class="game__result-desc">{@html result}</div>
                 </div>
                 <footer class="game__layer-footer">
                     <button class="game__btn game__btn_alt game__btn_reload" on:click={handleReload}>{reloadBtnText}</button>
