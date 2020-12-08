@@ -2,7 +2,7 @@
 module.exports = {
   mount: {
     public: '/',
-    src: '/_dist_',
+    src: '/dist',
   },
   plugins: [
     '@snowpack/plugin-svelte',
@@ -18,7 +18,10 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    /* ... */
+    out: 'docs',
+    baseUrl: './',
+    clean: true,
+    sourceMap: false
   },
   proxy: {
     /* ... */

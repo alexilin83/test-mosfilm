@@ -1,164 +1,164 @@
 <style type="text/scss">
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
     @import './variables.scss';
-    * {
-        box-sizing: border-box;
-    }
     .game {
         position: relative;
-        max-width: 750px;
-        margin: 0 auto 50px;
-        background: $bg-color-1;
+        width: 100%;
+        max-width: 741px;
+        margin: 0 auto;
+        background: rgba(map-get($colors, 'main'), .1);
         color: #fff;
-        line-height: 1.4;
-    }
-    .game__desc {
-        margin: 0 0 45px;
-        font-size: 16px;
-    }
-    .game__btn {
-        position: relative;
-        display: inline-block;
-        padding: 25px 80px;
-        background: $active-color;
-        border: none;
-        border-radius: 3px;
-        color: #000;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 1;
-        text-decoration: none;
-        outline: none;
-        cursor: pointer;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.05);
-        }
-        &_alt {
-            padding: 0;
-            background: none;
-            color: $active-color;
-            &:hover {
-                color: $active-color;
+        line-height: 1.5;
+        font-family: 'Oswald', sans-serif;
+        text-align: center;
+        :global(h3) {
+            font-size: 16px;
+            &:first-child {
+                margin-top: 0;
             }
         }
-        &_reload {
-            margin-bottom: 30px;
+        :global(p) {
+            font-size: 16px;
+            &:first-child {
+                margin-top: 0;
+            }
         }
-        &[disabled] {
-            opacity: .5;
-            cursor: default;
-            &:hover {
-                transform: none;
-            }   
+        :global(a) {
+            color: map-get($colors, 'main');
+        }
+    }
+    :global(.game__btn) {
+        position: relative;
+        display: inline-block;
+        padding: 15px 22px;
+        background: transparent;
+        border: 1px solid currentColor;
+        border-radius: 0px;
+        color: map-get($colors, 'main');
+        font-size: 16px;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+        outline: none;
+        cursor: pointer;
+        transition: .3s;
+        &:hover {
+            background: rgba(map-get($colors, 'main'), .2);
+        }
+        .game__layer_intro & {
+            margin-top: 52px;
+        }
+        :global(.game__footer) > & {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+    }
+    .game__btn_reload {
+        padding-left: 86px;
+        padding-right: 82px;
+        &:before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            background: url('/images/icon-reload.png') no-repeat 50% 50%;
+            transform: translateY(-50%);
+            transition: .3s;
+        }
+        &:hover {
+            &:before {
+                transform: translateY(-50%) rotate(360deg);
+            }
         }
     }
     .game__layer {
-        padding: 30px 20px 20px;
+        padding: 30px 82px 50px;
     }
-    .game__layer_intro {
-        padding: 70px 55px 160px;
-        background: linear-gradient($bg-color-2, transparent);
-        background-size: cover;
-    }
-    .game__layer-header {
-        text-align: center;
+    :global(.game__title) {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 324px;
         margin: 0 0 20px;
-        font-size: 16px;
-        b {
-            font-weight: normal;
-            color: $active-color;
-        }
+        padding: 0 50px;
+        background: #000;
+        font-size: 24px;
     }
-    .game__result {
-        margin: 0 0 45px;
-        padding: 60px 20px 80px;
-        background: #fff;
-        border-radius: 5px;
-        color: #000;
-        text-align: center;
+    :global(.game__footer) {
+        position: relative;
+        min-height: 50px;
     }
-    .game__result-desc {
-        font-size: 16px;
-    }
-    .game__layer-footer {
-        text-align: center;
-    }
-    .game__share-title {
-        margin: 0 0 10px;
-    }
-    .game__layer_intro .ya-share2 {
+    :global(.game__counter) {
         position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        padding: 15px 55px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        right: 20px;
+        top: 15px;
+        font-size: 12px;
+        background-image: 1px;
     }
-    :global(.game a) {
-        color: $active-color;
-        &:hover {
-            text-decoration: none;
+    .game__score {
+        margin-bottom: 30px;
+        font-size: 24px;
+    }
+    .game__share {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 34px;
+        h3 {
+            margin: 0 20px 0 0;
+            font-weight: normal;
+            font-size: 12px;
+        }
+        .game__layer_intro & {
+            margin: 84px 0 0;
         }
     }
-    :global(.game .ya-share2 .ya-share2__container_size_m .ya-share2__item) {
-        display: inline-block;
-        margin: 0 10px 0 0;
+    .game :global(.ya-share2__list.ya-share2__list_direction_horizontal) {
+        margin: 0;
     }
-    :global(.game .ya-share2__container .ya-share2__link) {
-        color: inherit;
-        text-align: center;
+    .game :global(.ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item)
+     {
+        margin: 0 11px 0 0;
     }
-    :global(.game .ya-share2 .ya-share2__container .ya-share2__badge) {
+    .game :global(.ya-share2 .ya-share2__container .ya-share2__badge) {
         background: none;
     }
-    :global(.game .ya-share2__item_service_vkontakte .ya-share2__icon) {
-        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.785 16.241s.288-.032.436-.194c.136-.148.132-.427.132-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.14 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.071.587-.964c-.043-.073-.308-.661-1.588-1.87-1.34-1.264-1.16-1.059.453-3.246.983-1.332 1.376-2.145 1.253-2.493-.117-.332-.84-.244-.84-.244l-2.406.015s-.178-.025-.31.056c-.13.079-.212.262-.212.262s-.382 1.03-.89 1.907c-1.07 1.85-1.499 1.948-1.674 1.832-.407-.267-.305-1.075-.305-1.648 0-1.793.267-2.54-.521-2.733-.262-.065-.454-.107-1.123-.114-.858-.009-1.585.003-1.996.208-.274.136-.485.44-.356.457.159.022.519.099.71.363.246.341.237 1.107.237 1.107s.142 2.11-.33 2.371c-.325.18-.77-.187-1.725-1.865-.489-.859-.859-1.81-.859-1.81s-.07-.176-.198-.272c-.154-.115-.37-.151-.37-.151l-2.286.015s-.343.01-.469.161C3.94 7.721 4.043 8 4.043 8s1.79 4.258 3.817 6.403c1.858 1.967 3.968 1.838 3.968 1.838h.957z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+    .game :global(.ya-share2__container_size_m .ya-share2__badge .ya-share2__icon) {
+        height: 32px;
+        width: 32px;
+        background-size: 32px 32px;
     }
-    :global(.game .ya-share2__item_service_facebook .ya-share2__icon) {
-        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.423 20v-7.298h2.464l.369-2.845h-2.832V8.042c0-.824.23-1.385 1.417-1.385h1.515V4.111A20.255 20.255 0 0 0 14.148 4c-2.183 0-3.678 1.326-3.678 3.76v2.097H8v2.845h2.47V20h2.953z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+    .game :global(.ya-share2__item_service_vkontakte .ya-share2__icon) {
+        background: url('/images/icon-vk.png');
     }
-    :global(.game .ya-share2__item_service_twitter .ya-share2__icon) {
-        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 7.539a6.56 6.56 0 0 1-1.885.517 3.294 3.294 0 0 0 1.443-1.816 6.575 6.575 0 0 1-2.085.796 3.283 3.283 0 0 0-5.593 2.994A9.32 9.32 0 0 1 5.114 6.6a3.28 3.28 0 0 0 1.016 4.382 3.274 3.274 0 0 1-1.487-.41v.041a3.285 3.285 0 0 0 2.633 3.218 3.305 3.305 0 0 1-1.482.056 3.286 3.286 0 0 0 3.066 2.28A6.585 6.585 0 0 1 4 17.524 9.291 9.291 0 0 0 9.032 19c6.038 0 9.34-5 9.34-9.337 0-.143-.004-.285-.01-.425A6.672 6.672 0 0 0 20 7.538z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+    .game :global(.ya-share2__item_service_facebook .ya-share2__icon) {
+        background: url('/images/icon-fb.png');
     }
-    :global(.game .ya-share2__item_service_odnoklassniki .ya-share2__icon) {
-        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFF' fill-rule='evenodd'%3E%3Cpath d='M11.674 6.536a1.69 1.69 0 0 0-1.688 1.688c0 .93.757 1.687 1.688 1.687a1.69 1.69 0 0 0 1.688-1.687 1.69 1.69 0 0 0-1.688-1.688zm0 5.763a4.08 4.08 0 0 1-4.076-4.075 4.08 4.08 0 0 1 4.076-4.077 4.08 4.08 0 0 1 4.077 4.077 4.08 4.08 0 0 1-4.077 4.075zM10.025 15.624a7.633 7.633 0 0 1-2.367-.98 1.194 1.194 0 0 1 1.272-2.022 5.175 5.175 0 0 0 5.489 0 1.194 1.194 0 1 1 1.272 2.022 7.647 7.647 0 0 1-2.367.98l2.279 2.28a1.194 1.194 0 0 1-1.69 1.688l-2.238-2.24-2.24 2.24a1.193 1.193 0 1 1-1.689-1.689l2.279-2.279'/%3E%3C/g%3E%3C/svg%3E");
+    .game :global(.ya-share2__item_service_twitter .ya-share2__icon) {
+        background: url('/images/icon-tw.png');
+    }
+    .game :global(.ya-share2__item_service_odnoklassniki .ya-share2__icon) {
+        background: url('/images/icon-od.png');
     }
     @media (max-width: 1279px) {
         .game {
             line-height: 1.2;
         }
-        .game__desc {
-            font-size: 14px;
-        }
-        .game__btn {
-            padding: 20px 46px;
-            &_alt {
-                padding: 0;
-            }
-        }
         .game__layer {
             padding: 20px 15px;
-        }
-        .game__layer_intro {
-            padding: 30px 30px 100px;
-        }
-        .game__layer_intro .ya-share2 {
-            padding: 10px 15px;
-        }
-        .game__result-desc {
-            font-size: 14px;
-        }
-    }
-    @media (max-width: 1396px) {
-        .game .ya-share2 {
-            display: block;
         }
     }
 </style>
 
 <script>
     import Question from './Question.svelte';
-    import { beforeUpdate, afterUpdate } from 'svelte';
+    import { afterUpdate } from 'svelte';
+    import { fade } from 'svelte/transition';
 
     export let desc;
     export let startBtnText;
@@ -172,6 +172,7 @@
     let isGameFinished = false;
     let currentQuestion = 1;
     let isCurrentQuestionDone = false;
+    let isNextQuestionReady = false;
     let currentQuestionStatus = null;
     let currentQuestionAnswer = null;
     let points = 0;
@@ -191,9 +192,9 @@
     function handleStart(){
         isGameStarted = true;
     }
-    function handleAnswerClick(e){
+    function handleAnswerClick(event){
         if (isCurrentQuestionDone) return false;
-        let el = e.currentTarget;
+        let el = event.detail.event.currentTarget;
         let answer = [].slice.call(el.parentNode.children).indexOf(el);
         if (questions[currentQuestion - 1].answer == answer) {
             currentQuestionStatus = 'correct';
@@ -203,6 +204,10 @@
         }
         currentQuestionAnswer = answer;
         isCurrentQuestionDone = true;
+
+        setTimeout(() => {
+            isNextQuestionReady = true;
+        }, 2000);
     }
     function handleNext(){
         if (currentQuestion == questions.length) {
@@ -210,6 +215,7 @@
         }
         currentQuestion++;
         isCurrentQuestionDone = false;
+        isNextQuestionReady = false;
         currentQuestionAnswer = null;
     }
     function handleReload(){
@@ -235,40 +241,41 @@
 <div class="game">
     {#if !isGameStarted}
         <div class="game__layer game__layer_intro">
-            <div class="game__desc">{@html desc}</div>
+            {@html desc}
             <button class="game__btn" on:click={handleStart}>{startBtnText}</button>
-            <div class="ya-share2" data-services={shareServices}></div>
+            <div class="game__share">
+                <h3>ПОДЕЛИТЬСЯ:</h3>
+                <div class="ya-share2" data-services={shareServices}></div>
+            </div>
         </div>
     {:else}
         <div class="game__layer">
             {#if !isGameFinished}
-                <header class="game__layer-header">
-                    <b>{currentQuestion}</b> из <b>{questions.length}</b>
-                </header>
                 <Question
                     questions={questions}
                     currentQuestion={currentQuestion}
                     currentQuestionAnswer={currentQuestionAnswer}
                     currentQuestionStatus={currentQuestionStatus}
                     isCurrentQuestionDone={isCurrentQuestionDone}
-                    on:click={handleAnswerClick}
+                    isNextQuestionReady={isNextQuestionReady}
+                    on:answer={handleAnswerClick}
+                    on:next={handleNext}
                 />
-                {#if isGameStarted && !isGameFinished}
-                    <footer class="game__layer-footer">
-                        <button class="game__btn" disabled={!isCurrentQuestionDone} on:click={handleNext}>{nextBtnText}</button>
-                    </footer>
-                {/if}
             {:else}
-                <div class="game__result">
-                    <div class="game__result-desc">{@html result}</div>
-                </div>
-                <footer class="game__layer-footer">
-                    <button class="game__btn game__btn_alt game__btn_reload" on:click={handleReload}>{reloadBtnText}</button>
-                    <div class="game__share">
-                        <div class="game__share-title">{shareHeading}</div>
-                        <div class="share" bind:this={resultShareEl}></div>
+                <header class="game__title">
+                    <div class="game__counter">
+                        {questions.length}/{questions.length}
                     </div>
-                </footer>
+                    <div class="game__result">
+                        <div class="game__score">Мой результат: {points} из {questions.length}</div>
+                        {@html result}
+                    </div>
+                </header>
+                <div class="game__share">
+                    <h3>ПОДЕЛИТЬСЯ РЕЗУЛЬТАТОМ:</h3>
+                    <div class="share" bind:this={resultShareEl}></div>
+                </div>
+                <button class="game__btn game__btn_reload" on:click={handleReload}>{reloadBtnText}</button>
             {/if}
         </div>
     {/if}
