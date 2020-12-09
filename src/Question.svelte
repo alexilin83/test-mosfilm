@@ -46,7 +46,7 @@
         transform: translateX(-50%);
         @for $i from 1 through 25 {
             &_#{$i} {
-                background-image: url('/images/poster-#{$i}.jpg');
+                background-image: url('/dist/images/poster-#{$i}.jpg');
             }
         }
     }

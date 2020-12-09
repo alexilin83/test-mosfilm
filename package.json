@@ -7,8 +7,11 @@
   "devDependencies": {
     "@snowpack/plugin-svelte": "^3.3.0",
     "@snowpack/plugin-webpack": "^2.1.1",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
     "sass": "^1.29.0",
-    "snowpack": "^2.17.1"
+    "snowpack": "^2.17.1",
+    "snowpack-plugin-imagemin": "^1.0.0"
   },
   "dependencies": {
     "svelte": "^3.30.1"

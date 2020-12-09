@@ -7,6 +7,7 @@
         max-width: 741px;
         margin: 0 auto;
         background: rgba(map-get($colors, 'main'), .1);
+        background: #000;
         color: #fff;
         line-height: 1.5;
         font-family: 'Oswald', sans-serif;
@@ -65,7 +66,7 @@
             top: 50%;
             width: 24px;
             height: 24px;
-            background: url('/images/icon-reload.png') no-repeat 50% 50%;
+            background: url('/dist/images/icon-reload.png') no-repeat 50% 50%;
             transform: translateY(-50%);
             transition: .3s;
         }
@@ -134,16 +135,16 @@
         background-size: 32px 32px;
     }
     .game :global(.ya-share2__item_service_vkontakte .ya-share2__icon) {
-        background: url('/images/icon-vk.png');
+        background: url('/dist/images/icon-vk.png');
     }
     .game :global(.ya-share2__item_service_facebook .ya-share2__icon) {
-        background: url('/images/icon-fb.png');
+        background: url('/dist/images/icon-fb.png');
     }
     .game :global(.ya-share2__item_service_twitter .ya-share2__icon) {
-        background: url('/images/icon-tw.png');
+        background: url('/dist/images/icon-tw.png');
     }
     .game :global(.ya-share2__item_service_odnoklassniki .ya-share2__icon) {
-        background: url('/images/icon-od.png');
+        background: url('/dist/images/icon-od.png');
     }
     @media (max-width: 1279px) {
         .game {
