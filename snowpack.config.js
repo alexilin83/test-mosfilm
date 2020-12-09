@@ -30,6 +30,7 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
+    out: 'docs',
     clean: true
   },
   proxy: {
