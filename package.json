@@ -1,4 +1,5 @@
 {
+  "homepage": "https://alexilin83.github.io/test-mosfilm/",
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
@@ -23,5 +24,5 @@
     "> 1%",
     "iOS 7",
     "last 3 iOS versions"
-  ]
+  ],
 }
