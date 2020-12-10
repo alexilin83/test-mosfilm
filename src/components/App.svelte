@@ -1,6 +1,6 @@
 <style type="text/scss">
     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
-    @import './variables.scss';
+    @import '../variables.scss';
     .game {
         position: relative;
         width: 100%;

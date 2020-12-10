@@ -1,4 +1,4 @@
-import App from './App.js';
+import App from './components/App.js';
 
 const app = new App({
     target: document.getElementById('test-mosfilm'),
