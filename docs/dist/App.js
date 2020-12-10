@@ -49,7 +49,7 @@ function create_else_block(ctx) {
 		c() {
 			div = element("div");
 			if_block.c();
-			attr(div, "class", "game__layer svelte-9hskz");
+			attr(div, "class", "game__layer svelte-dj9x86");
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
@@ -99,7 +99,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (255:4) {#if !isGameStarted}
+// (263:4) {#if !isGameStarted}
 function create_if_block(ctx) {
 	let div2;
 	let html_tag;
@@ -128,11 +128,11 @@ function create_if_block(ctx) {
 			div0 = element("div");
 			html_tag = new HtmlTag(t0);
 			attr(button, "class", "game__btn");
-			attr(h3, "class", "svelte-9hskz");
+			attr(h3, "class", "svelte-dj9x86");
 			attr(div0, "class", "ya-share2");
 			attr(div0, "data-services", /*shareServices*/ ctx[4]);
-			attr(div1, "class", "game__share svelte-9hskz");
-			attr(div2, "class", "game__layer game__layer_intro svelte-9hskz");
+			attr(div1, "class", "game__share svelte-dj9x86");
+			attr(div2, "class", "game__layer game__layer_intro svelte-dj9x86");
 		},
 		m(target, anchor) {
 			insert(target, div2, anchor);
@@ -169,7 +169,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (277:12) {:else}
+// (285:12) {:else}
 function create_else_block_1(ctx) {
 	let header;
 	let div0;
@@ -224,14 +224,14 @@ function create_else_block_1(ctx) {
 			button = element("button");
 			t13 = text(/*reloadBtnText*/ ctx[2]);
 			attr(div0, "class", "game__counter");
-			attr(div1, "class", "game__score svelte-9hskz");
+			attr(div1, "class", "game__score svelte-dj9x86");
 			html_tag = new HtmlTag(null);
-			attr(div2, "class", "game__result");
+			attr(div2, "class", "game__result svelte-dj9x86");
 			attr(header, "class", "game__title");
-			attr(h3, "class", "svelte-9hskz");
+			attr(h3, "class", "svelte-dj9x86");
 			attr(div3, "class", "share");
-			attr(div4, "class", "game__share svelte-9hskz");
-			attr(button, "class", "game__btn game__btn_reload svelte-9hskz");
+			attr(div4, "class", "game__share svelte-dj9x86");
+			attr(button, "class", "game__btn game__btn_reload svelte-dj9x86");
 		},
 		m(target, anchor) {
 			insert(target, header, anchor);
@@ -253,7 +253,7 @@ function create_else_block_1(ctx) {
 			append(div4, h3);
 			append(div4, t11);
 			append(div4, div3);
-			/*div3_binding*/ ctx[22](div3);
+			/*div3_binding*/ ctx[20](div3);
 			insert(target, t12, anchor);
 			insert(target, button, anchor);
 			append(button, t13);
@@ -277,7 +277,7 @@ function create_else_block_1(ctx) {
 			if (detaching) detach(header);
 			if (detaching) detach(t9);
 			if (detaching) detach(div4);
-			/*div3_binding*/ ctx[22](null);
+			/*div3_binding*/ ctx[20](null);
 			if (detaching) detach(t12);
 			if (detaching) detach(button);
 			mounted = false;
@@ -286,7 +286,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (266:12) {#if !isGameFinished}
+// (274:12) {#if !isGameFinished}
 function create_if_block_1(ctx) {
 	let question;
 	let current;
@@ -358,7 +358,7 @@ function create_fragment(ctx) {
 		c() {
 			div = element("div");
 			if_block.c();
-			attr(div, "class", "game svelte-9hskz");
+			attr(div, "class", "game svelte-dj9x86");
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);
@@ -411,11 +411,9 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
 	let { desc } = $$props;
 	let { startBtnText } = $$props;
-	let { nextBtnText } = $$props;
 	let { reloadBtnText } = $$props;
 	let { questions } = $$props;
 	let { results } = $$props;
-	let { shareHeading } = $$props;
 	let { shareServices } = $$props;
 	let isGameStarted = false;
 	let isGameFinished = false;
@@ -504,11 +502,9 @@ function instance($$self, $$props, $$invalidate) {
 	$$self.$$set = $$props => {
 		if ("desc" in $$props) $$invalidate(0, desc = $$props.desc);
 		if ("startBtnText" in $$props) $$invalidate(1, startBtnText = $$props.startBtnText);
-		if ("nextBtnText" in $$props) $$invalidate(19, nextBtnText = $$props.nextBtnText);
 		if ("reloadBtnText" in $$props) $$invalidate(2, reloadBtnText = $$props.reloadBtnText);
 		if ("questions" in $$props) $$invalidate(3, questions = $$props.questions);
-		if ("results" in $$props) $$invalidate(20, results = $$props.results);
-		if ("shareHeading" in $$props) $$invalidate(21, shareHeading = $$props.shareHeading);
+		if ("results" in $$props) $$invalidate(19, results = $$props.results);
 		if ("shareServices" in $$props) $$invalidate(4, shareServices = $$props.shareServices);
 	};
 
@@ -532,9 +528,7 @@ function instance($$self, $$props, $$invalidate) {
 		handleAnswerClick,
 		handleNext,
 		handleReload,
-		nextBtnText,
 		results,
-		shareHeading,
 		div3_binding
 	];
 }
@@ -546,11 +540,9 @@ class App extends SvelteComponent {
 		init(this, options, instance, create_fragment, safe_not_equal, {
 			desc: 0,
 			startBtnText: 1,
-			nextBtnText: 19,
 			reloadBtnText: 2,
 			questions: 3,
-			results: 20,
-			shareHeading: 21,
+			results: 19,
 			shareServices: 4
 		});
 	}

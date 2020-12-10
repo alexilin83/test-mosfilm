@@ -3,6 +3,58 @@
     * {
         box-sizing: border-box;
     }
+    .game__quote {
+        width: 100%;
+        padding: 0 0 80px;
+        &-text {
+            position: relative;
+            border: 2px solid;
+            border-bottom: none;
+            font: 18px 'Oswald', sans-serif;
+            text-transform: uppercase;
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                right: 251px;
+                border-bottom: 2px solid;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: calc(100% - 3px);
+                width: 252px;
+                height: 42px;
+                background: url('/dist/images/quote-triangle.png') no-repeat 0 0;
+            }
+            &-inner {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 202px;
+                padding: 30px 20px;
+                &:before {
+                    content: '“';
+                    position: absolute;
+                    left: 25px;
+                    top: 15px;
+                    font-size: 41px;
+                    line-height: 1;
+                }
+            }
+        }
+        &-photo {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 185px;
+            height: 181px;
+            background: url('/dist/images/quote-photo.png') no-repeat 0 0;
+        }
+    }
     .game__answers {
         display: flex;
         flex-direction: column;
@@ -51,16 +103,12 @@
         }
     }
     @media (max-width: 1279px) {
-        .game__question-header {
-            font-size: 14px;
-        }
-        .game__question-comment {
-            left: 10px;
-            right: 10px;
-            font-size: 12px;
-        }
         .game__answer {
-            padding: 10px 10px 10px 60px;
+            min-width: 0x;
+            margin-bottom: 5px;
+            &:last-child {
+                margin: 0;
+            }
         }
     }
 </style>
@@ -96,9 +144,16 @@
             {currentQuestion}/{questions.length}
         </div>
         {#if !isCurrentQuestionDone}
-            {@html questions[currentQuestion - 1].title}
+            <div class="game__quote">
+                <div class="game__quote-text" transition:fly="{{y: -100, opacity: 0, duration: 1000, easing: quintOut}}">
+                    <div class="game__quote-text-inner">
+                        {@html questions[currentQuestion - 1].title}
+                    </div>
+                </div>
+                <div class="game__quote-photo" transition:fly="{{x: 100, opacity: 0, duration: 1000, easing: quintOut}}"></div>
+            </div>
         {:else}
-            <div class="game__question-comment game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, start: 0.5, easing: quintOut}}"></div>
+            <div class="game__question-comment game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, easing: quintOut}}"></div>
         {/if}
     </header>
     <footer class="game__footer">

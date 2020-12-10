@@ -7,10 +7,8 @@
         max-width: 741px;
         margin: 0 auto;
         background: rgba(map-get($colors, 'main'), .1);
-        background: #000;
         color: #fff;
         line-height: 1.5;
-        font-family: 'Oswald', sans-serif;
         text-align: center;
         :global(h3) {
             font-size: 16px;
@@ -81,14 +79,13 @@
     }
     :global(.game__title) {
         position: relative;
+        overflow: hidden;
         display: flex;
-        justify-content: center;
         align-items: center;
-        height: 324px;
-        margin: 0 0 20px;
-        padding: 0 50px;
-        background: #000;
-        font-size: 24px;
+        min-height: 324px;
+        margin: 0 0 30px;
+        padding: 20px;
+        background: url('/dist/images/title-bg.png') no-repeat 0 0 / cover, linear-gradient(#8B35D9, #2A2DED);
     }
     :global(.game__footer) {
         position: relative;
@@ -96,10 +93,13 @@
     }
     :global(.game__counter) {
         position: absolute;
-        right: 20px;
-        top: 15px;
+        left: 20px;
+        bottom: 15px;
         font-size: 12px;
         background-image: 1px;
+    }
+    .game__result {
+        padding: 0 40px;
     }
     .game__score {
         margin-bottom: 30px;
@@ -146,12 +146,19 @@
     .game :global(.ya-share2__item_service_odnoklassniki .ya-share2__icon) {
         background: url('/dist/images/icon-od.png');
     }
-    @media (max-width: 1279px) {
+    @media (max-width: 768px) {
         .game {
             line-height: 1.2;
         }
         .game__layer {
             padding: 20px 15px;
+        }
+        :global(.game__btn) {
+            padding: 15px 22px;
+        }
+        :global(.game__title) {
+            margin-bottom: 15px;
+            padding: 15px;
         }
     }
 </style>
@@ -163,11 +170,9 @@
 
     export let desc;
     export let startBtnText;
-    export let nextBtnText;
     export let reloadBtnText;
     export let questions;
     export let results;
-    export let shareHeading;
     export let shareServices;
     let isGameStarted = false;
     let isGameFinished = false;
