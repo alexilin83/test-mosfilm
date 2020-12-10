@@ -111,6 +111,20 @@
             }
         }
     }
+    @media (max-width: 640px) {
+        .game__quote {
+            &-text {
+                &-inner {
+                    padding: 20px 15px;
+                    font-size: 14px
+                }
+            }
+        }
+        .game__answer {
+            max-width: calc(100% - 16px);
+            width: 100%;
+        }
+    }
 </style>
 <script>
     import { scale, fly, fade } from 'svelte/transition';

@@ -3,12 +3,14 @@
     @import '../variables.scss';
     .game {
         position: relative;
+        overflow: hidden;
         width: 100%;
         max-width: 741px;
         margin: 0 auto;
         background: rgba(map-get($colors, 'main'), .1);
         color: #fff;
         line-height: 1.5;
+        font-family: 'TT Norms',sans-serif;
         text-align: center;
         :global(h3) {
             font-size: 16px;
@@ -34,8 +36,7 @@
         border: 1px solid currentColor;
         border-radius: 0px;
         color: map-get($colors, 'main');
-        font-size: 16px;
-        line-height: 1;
+        font: 16px/1 'TT Norms',sans-serif;
         text-decoration: none;
         text-transform: uppercase;
         outline: none;
@@ -122,8 +123,7 @@
     .game :global(.ya-share2__list.ya-share2__list_direction_horizontal) {
         margin: 0;
     }
-    .game :global(.ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item)
-     {
+    .game :global(.ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item) {
         margin: 0 11px 0 0;
     }
     .game :global(.ya-share2 .ya-share2__container .ya-share2__badge) {
@@ -161,6 +161,28 @@
             padding: 15px;
         }
     }
+    @media (max-width: 640px) {
+        .game__layer {
+            padding: 16px 0
+        }
+        .game__counter {
+            bottom: 8px;
+            left: 8px
+        }
+        .game :global(.ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item) {
+            margin: 0 4px 4px 0;
+        }
+        .game :global(.ya-share2__container_size_m .ya-share2__badge .ya-share2__icon) {
+            height: 24px;
+            width: 24px;
+            background-size: 100% auto;
+        }
+        .game__share {
+            margin: 0 8px 0 0;
+            font-weight: 400;
+            font-size: 10px;
+        }
+    }
 </style>
 
 <script>
@@ -188,6 +210,10 @@
     afterUpdate(() => {
         if (isGameFinished && !resultShare) {
             resultShare = Ya.share2(resultShareEl, {
+                content: {
+                    title: `Мой результат: ${points} из ${questions.length}`,
+                    url: window.location.href + `?result=${result + 1}`,
+                },
                 theme: {
                     services: shareServices
                 }
@@ -235,11 +261,11 @@
     function setResult() {
         isGameFinished = true;
         if (points < 11) {
-            result = results[0];
+            result = 0;
         } else if (points < 21) {
-            result = results[1];
+            result = 1;
         } else {
-            result = results[2];
+            result = 2;
         }
     }
 </script>
@@ -274,7 +300,7 @@
                     </div>
                     <div class="game__result">
                         <div class="game__score">Мой результат: {points} из {questions.length}</div>
-                        {@html result}
+                        {@html results[result]}
                     </div>
                 </header>
                 <div class="game__share">
