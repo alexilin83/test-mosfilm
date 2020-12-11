@@ -67,21 +67,21 @@
         &:last-child {
             margin: 0;
         }
-        .game__question_done & {
+        .game__question_answered & {
             background: transparent;
             color: map-get($colors, 'secondary');
             opacity: .5;
             cursor: default;
         }
-        .game__question_done &_correct,
-        .game__question_done &_incorrect {
+        .game__question_answered &_correct,
+        .game__question_answered &_incorrect {
             opacity: 1;
             color: inherit;
         }
-        .game__question_done &_correct {
+        .game__question_answered &_correct {
             background: linear-gradient(to right, #49cf50, #22be2a);
         }
-        .game__question_done &_incorrect {
+        .game__question_answered &_incorrect {
             background: linear-gradient(to right, #F36F49, #E74969);
             animation-duration: .7s;
             animation-fill-mode: both;
@@ -145,7 +145,7 @@
     export let currentQuestionAnswer;
     export let currentQuestionStatus;
     export let isCurrentQuestionDone;
-    export let isNextQuestionReady;
+    export let isCurrentQuestionAnswered;
 
     const dispatch = createEventDispatcher();
 
@@ -154,19 +154,14 @@
             event: e
         });
     }
-
-    function handleNextClick() {
-        dispatch('next');
-    }
-
 </script>
 
-<div class="game__question" class:game__question_done="{isCurrentQuestionDone}">
+<div class="game__question" class:game__question_answered="{isCurrentQuestionAnswered}">
     <header class="game__title">
         <div class="game__counter">
             {currentQuestion}/{questions.length}
         </div>
-        {#if !isCurrentQuestionDone}
+        {#if !isCurrentQuestionAnswered}
             <div class="game__quote">
                 <div class="game__quote-text" transition:fly="{{y: -100, opacity: 0, duration: 1000, easing: quintOut}}">
                     <div class="game__quote-text-inner">
@@ -176,24 +171,22 @@
                 <div class="game__quote-photo" transition:fly="{{x: 100, opacity: 0, duration: 1000, easing: quintOut}}"></div>
             </div>
         {:else}
-            <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, easing: quintOut}}"></div>
+            <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, start: .5, easing: quintOut}}"></div>
         {/if}
     </header>
     <footer class="game__footer">
-        {#if !isNextQuestionReady}
+        {#if !isCurrentQuestionDone}
             <div class="game__answers">
                 {#each questions[currentQuestion - 1].answers as answer, i}
                     <div
                         class="game__answer game__btn"
-                        class:game__answer_correct="{isCurrentQuestionDone && i == questions[currentQuestion - 1].answer}"
-                        class:game__answer_incorrect="{isCurrentQuestionDone && i == currentQuestionAnswer && currentQuestionStatus === 'incorrect'}"
-                        on:click={handleAnswerClick} out:fly="{{x: 100, opacity: 0, delay: i * 100}}">
+                        class:game__answer_correct="{isCurrentQuestionAnswered && i == questions[currentQuestion - 1].answer}"
+                        class:game__answer_incorrect="{isCurrentQuestionAnswered && i == currentQuestionAnswer && currentQuestionStatus === 'incorrect'}"
+                        on:click={handleAnswerClick} in:fly="{{x: -100, opacity: 0, delay: i * 100}}" out:fly="{{x: 100, opacity: 0, delay: i * 100}}">
                         {answer}
                     </div>
                 {/each}
             </div>
-        {:else}
-            <button class="game__btn" on:click={handleNextClick} in:fade="{{delay: 600}}">Дальше!</button>
         {/if}
     </footer>
 </div>

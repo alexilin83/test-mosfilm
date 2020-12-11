@@ -226,7 +226,7 @@
     let isGameFinished = false;
     let currentQuestion = 1;
     let isCurrentQuestionDone = false;
-    let isNextQuestionReady = false;
+    let isCurrentQuestionAnswered = false;
     let currentQuestionStatus = null;
     let currentQuestionAnswer = null;
     let points = 0;
@@ -251,7 +251,7 @@
         isGameStarted = true;
     }
     function handleAnswerClick(event){
-        if (isCurrentQuestionDone) return false;
+        if (isCurrentQuestionAnswered) return false;
         let el = event.detail.event.currentTarget;
         let answer = [].slice.call(el.parentNode.children).indexOf(el);
         if (questions[currentQuestion - 1].answer == answer) {
@@ -261,20 +261,20 @@
             currentQuestionStatus = 'incorrect';
         }
         currentQuestionAnswer = answer;
-        isCurrentQuestionDone = true;
+        isCurrentQuestionAnswered = true;
 
         setTimeout(() => {
-            isNextQuestionReady = true;
-        }, 2000);
-    }
-    function handleNext(){
-        if (currentQuestion == questions.length) {
-            setResult();
-        }
-        currentQuestion++;
-        isCurrentQuestionDone = false;
-        isNextQuestionReady = false;
-        currentQuestionAnswer = null;
+            isCurrentQuestionDone = true;
+            setTimeout(() => {
+                if (currentQuestion == questions.length) {
+                    setResult();
+                }
+                currentQuestion++;
+                isCurrentQuestionDone = false;
+                isCurrentQuestionAnswered = false;
+                currentQuestionAnswer = null;
+            }, 300);
+        }, 2700);
     }
     function handleReload(){
         isGameFinished = false;
@@ -319,9 +319,8 @@
                     currentQuestionAnswer={currentQuestionAnswer}
                     currentQuestionStatus={currentQuestionStatus}
                     isCurrentQuestionDone={isCurrentQuestionDone}
-                    isNextQuestionReady={isNextQuestionReady}
+                    isCurrentQuestionAnswered={isCurrentQuestionAnswered}
                     on:answer={handleAnswerClick}
-                    on:next={handleNext}
                 />
             {:else}
                 <header class="game__title">
