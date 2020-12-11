@@ -7,19 +7,7 @@ module.exports = {
   },
   plugins: [
     '@snowpack/plugin-svelte',
-    [
-      '@snowpack/plugin-webpack',
-      {
-        // extendConfig: (config) => {
-        //   config.plugins.push({
-        //     output: {
-        //       path: 
-        //     }
-        //   });
-        //   return config;
-        // },
-      },
-    ],
+    '@snowpack/plugin-webpack',
     [
       'snowpack-plugin-imagemin',
       {

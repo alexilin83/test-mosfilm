@@ -15,14 +15,6 @@
         :global(*) {
             box-sizing: border-box;
         }
-        figure {
-            border-bottom: 1px solid;
-            img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-        }
         :global(h3) {
             font-size: 16px;
             &:first-child {
@@ -90,6 +82,11 @@
     }
     .game__layer {
         padding: 30px 82px 50px;
+    }
+    .game__intro-photo {
+        padding-bottom: 56.25%;
+        background: url('/dist/images/intro.png') no-repeat 50% 50% / contain;
+        border-bottom: 1px solid;
     }
     :global(.game__title) {
         position: relative;
@@ -302,9 +299,7 @@
 <div class="game">
     {#if !isGameStarted}
         <div class="game__layer game__layer_intro">
-            <figure>
-                <img src="/dist/images/intro.png" alt="">
-            </figure>
+            <div class="game__intro-photo"></div>
             <p>А насколько хорошо вы знаете советское кино?</p>
             <p>Проверьте себя на знание цитат из любимых фильмов.</p>
             <p><b>Камера! Мотор! Поехали!</b></p>
