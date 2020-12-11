@@ -171,10 +171,18 @@
         }
         :global(.game__btn) {
             padding: 15px 22px;
+            .game__layer_intro & {
+                margin-top: 20px;
+            }
         }
         :global(.game__title) {
             margin-bottom: 15px;
             padding: 15px;
+        }
+        .game__share {
+            .game__layer_intro & {
+                margin-top: 30px;
+            }
         }
     }
     @media (max-width: 640px) {
@@ -185,6 +193,11 @@
             bottom: 8px;
             left: 8px
         }
+        .game__result {
+            span {
+                display: block;
+            }
+        }
         .game :global(.ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item) {
             margin: 0 4px 4px 0;
         }
@@ -194,9 +207,13 @@
             background-size: 100% auto;
         }
         .game__share {
+            display: block;
             margin: 0 auto 10px;
             font-weight: 400;
             font-size: 10px;
+            h3 {
+                margin: 0 0 10px;
+            }
         }
     }
 </style>
@@ -210,7 +227,7 @@
     export let questions;
     let isGameStarted = false;
     let isGameFinished = false;
-    let currentQuestion = 1;
+    let currentQuestion = 11;
     let isCurrentQuestionDone = false;
     let isNextQuestionReady = false;
     let currentQuestionStatus = null;
@@ -272,9 +289,9 @@
     }
     function setResult() {
         isGameFinished = true;
-        if (points < 4) {
+        if (points < 5) {
             result = 0;
-        } else if (points < 9) {
+        } else if (points < 10) {
             result = 1;
         } else {
             result = 2;
@@ -317,7 +334,7 @@
                         {questions.length}/{questions.length}
                     </div>
                     <div class="game__result">
-                        <div class="game__score">Мой результат: {points} из {questions.length}</div>
+                        <div class="game__score">Мой результат: <span>{points} из {questions.length}</span></div>
                         {@html settings.results[result]}
                     </div>
                 </header>
