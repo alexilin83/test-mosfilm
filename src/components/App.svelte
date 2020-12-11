@@ -194,7 +194,7 @@
             background-size: 100% auto;
         }
         .game__share {
-            margin: 0 8px 0 0;
+            margin: 0 auto 10px;
             font-weight: 400;
             font-size: 10px;
         }

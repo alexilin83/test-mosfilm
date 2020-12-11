@@ -130,6 +130,7 @@
         .game__answer {
             max-width: calc(100% - 16px);
             width: 100%;
+            min-width: auto;
         }
     }
 </style>
