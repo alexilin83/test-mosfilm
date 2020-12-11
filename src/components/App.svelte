@@ -227,7 +227,7 @@
     export let questions;
     let isGameStarted = false;
     let isGameFinished = false;
-    let currentQuestion = 11;
+    let currentQuestion = 1;
     let isCurrentQuestionDone = false;
     let isNextQuestionReady = false;
     let currentQuestionStatus = null;
