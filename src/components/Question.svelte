@@ -41,8 +41,7 @@
                     position: absolute;
                     left: 25px;
                     top: 15px;
-                    font-size: 41px;
-                    line-height: 1;
+                    font: 900 41px/1 "TT Norms",sans-serif;
                 }
             }
         }
@@ -68,38 +67,46 @@
         &:last-child {
             margin: 0;
         }
-        .game__question_done &:not(.game__answer_selected) {
+        .game__question_done & {
+            background: transparent;
             color: map-get($colors, 'secondary');
             opacity: .5;
-            &:hover {
-                background: transparent;
-                cursor: default;
-            }
+            cursor: default;
         }
-        &_correct {
+        .game__question_done &_correct,
+        .game__question_done &_incorrect {
+            opacity: 1;
+            color: inherit;
+        }
+        .game__question_done &_correct {
             background: linear-gradient(to right, #49cf50, #22be2a);
-            cursor: default;
         }
-        &_incorrect {
+        .game__question_done &_incorrect {
             background: linear-gradient(to right, #F36F49, #E74969);
-            cursor: default;
+            animation-duration: .7s;
+            animation-fill-mode: both;
+            animation-name: flash;
         }
 
     }
     .game__question-comment {
         position: absolute;
-        left: 50%;
+        left: 0;
         top: 0;
-        width: 210px;
+        width: 100%;
         height: 100%;
         background-repeat: no-repeat;
-        background: 50% 50%;
-        background-size: contain;
-        transform: translateX(-50%);
-        @for $i from 1 through 25 {
-            &_#{$i} {
-                background-image: url('/dist/images/poster-#{$i}.jpg');
-            }
+        background-position: 50% 50%;
+        background-size: cover;
+    }
+    @for $i from 1 through 12 {
+        .game__question-comment_test-1.game__question-comment_#{$i} {
+            background-image: url('/dist/images/poster-1-#{$i}.jpg');
+        }
+    }
+    @for $i from 1 through 13 {
+        .game__question-comment_test-2.game__question-comment_#{$i} {
+            background-image: url('/dist/images/poster-2-#{$i}.jpg');
         }
     }
     @media (max-width: 1279px) {
@@ -131,6 +138,7 @@
     import { quintOut } from 'svelte/easing';
     import { createEventDispatcher } from 'svelte';
 
+    export let test;
     export let questions;
     export let currentQuestion;
     export let currentQuestionAnswer;
@@ -167,7 +175,7 @@
                 <div class="game__quote-photo" transition:fly="{{x: 100, opacity: 0, duration: 1000, easing: quintOut}}"></div>
             </div>
         {:else}
-            <div class="game__question-comment game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, easing: quintOut}}"></div>
+            <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, easing: quintOut}}"></div>
         {/if}
     </header>
     <footer class="game__footer">
@@ -176,8 +184,7 @@
                 {#each questions[currentQuestion - 1].answers as answer, i}
                     <div
                         class="game__answer game__btn"
-                        class:game__answer_selected="{isCurrentQuestionDone && i == currentQuestionAnswer}"
-                        class:game__answer_correct="{isCurrentQuestionDone && i == currentQuestionAnswer && i == questions[currentQuestion - 1].answer}"
+                        class:game__answer_correct="{isCurrentQuestionDone && i == questions[currentQuestion - 1].answer}"
                         class:game__answer_incorrect="{isCurrentQuestionDone && i == currentQuestionAnswer && currentQuestionStatus === 'incorrect'}"
                         on:click={handleAnswerClick} out:fly="{{x: 100, opacity: 0, delay: i * 100}}">
                         {answer}

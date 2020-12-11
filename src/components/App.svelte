@@ -12,6 +12,17 @@
         line-height: 1.5;
         font-family: 'TT Norms',sans-serif;
         text-align: center;
+        :global(*) {
+            box-sizing: border-box;
+        }
+        figure {
+            border-bottom: 1px solid;
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
         :global(h3) {
             font-size: 16px;
             &:first-child {
@@ -55,9 +66,11 @@
             transform: translateX(-50%);
         }
     }
+    .game__btn_lg {
+        min-width: 315px;
+        margin-bottom: 10px;
+    }
     .game__btn_reload {
-        padding-left: 86px;
-        padding-right: 82px;
         &:before {
             content: '';
             position: absolute;
@@ -98,6 +111,9 @@
         bottom: 15px;
         font-size: 12px;
         background-image: 1px;
+        z-index: 5;
+        font-weight: 600;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.25);
     }
     .game__result {
         padding: 0 40px;
@@ -188,14 +204,10 @@
 <script>
     import Question from './Question.svelte';
     import { afterUpdate } from 'svelte';
-    import { fade } from 'svelte/transition';
+    import settings from '../settings';
 
-    export let desc;
-    export let startBtnText;
-    export let reloadBtnText;
+    export let test;
     export let questions;
-    export let results;
-    export let shareServices;
     let isGameStarted = false;
     let isGameFinished = false;
     let currentQuestion = 1;
@@ -215,7 +227,7 @@
                     url: window.location.href + `?result=${result + 1}`,
                 },
                 theme: {
-                    services: shareServices
+                    services: settings.shareServices
                 }
             });
         }
@@ -260,9 +272,9 @@
     }
     function setResult() {
         isGameFinished = true;
-        if (points < 11) {
+        if (points < 4) {
             result = 0;
-        } else if (points < 21) {
+        } else if (points < 9) {
             result = 1;
         } else {
             result = 2;
@@ -273,17 +285,23 @@
 <div class="game">
     {#if !isGameStarted}
         <div class="game__layer game__layer_intro">
-            {@html desc}
-            <button class="game__btn" on:click={handleStart}>{startBtnText}</button>
+            <figure>
+                <img src="/dist/images/intro.png" alt="">
+            </figure>
+            <p>А насколько хорошо вы знаете советское кино?</p>
+            <p>Проверьте себя на знание цитат из любимых фильмов.</p>
+            <p><b>Камера! Мотор! Поехали!</b></p>
+            <button class="game__btn" on:click={handleStart}>Пройти тест</button>
             <div class="game__share">
                 <h3>ПОДЕЛИТЬСЯ:</h3>
-                <div class="ya-share2" data-services={shareServices}></div>
+                <div class="ya-share2" data-services={settings.shareServices}></div>
             </div>
         </div>
     {:else}
         <div class="game__layer">
             {#if !isGameFinished}
                 <Question
+                    test={test}
                     questions={questions}
                     currentQuestion={currentQuestion}
                     currentQuestionAnswer={currentQuestionAnswer}
@@ -300,14 +318,15 @@
                     </div>
                     <div class="game__result">
                         <div class="game__score">Мой результат: {points} из {questions.length}</div>
-                        {@html results[result]}
+                        {@html settings.results[result]}
                     </div>
                 </header>
                 <div class="game__share">
                     <h3>ПОДЕЛИТЬСЯ РЕЗУЛЬТАТОМ:</h3>
                     <div class="share" bind:this={resultShareEl}></div>
                 </div>
-                <button class="game__btn game__btn_reload" on:click={handleReload}>{reloadBtnText}</button>
+                <button class="game__btn game__btn_lg game__btn_reload" on:click={handleReload}>Пройти еще раз</button>
+                <a href="https://mosfilmgold.ru/program" class="game__btn game__btn_lg" target="_blank">Расписание телесеансов</a>
             {/if}
         </div>
     {/if}
