@@ -15,6 +15,14 @@
         :global(*) {
             box-sizing: border-box;
         }
+        figure {
+            border-bottom: 1px solid;
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
         :global(h3) {
             font-size: 16px;
             &:first-child {
@@ -82,11 +90,6 @@
     }
     .game__layer {
         padding: 30px 82px 50px;
-    }
-    .game__intro-photo {
-        padding-bottom: 56.25%;
-        background: url('/dist/images/intro.png') no-repeat 50% 50% / contain;
-        border-bottom: 1px solid;
     }
     :global(.game__title) {
         position: relative;
@@ -219,12 +222,13 @@
     import Question from './Question.svelte';
     import { afterUpdate } from 'svelte';
     import settings from '../settings';
+    import introImg from '../images/intro.png';
 
     export let test;
     export let questions;
     let isGameStarted = false;
     let isGameFinished = false;
-    let currentQuestion = 1;
+    let currentQuestion = 11;
     let isCurrentQuestionDone = false;
     let isCurrentQuestionAnswered = false;
     let currentQuestionStatus = null;
@@ -268,19 +272,22 @@
             setTimeout(() => {
                 if (currentQuestion == questions.length) {
                     setResult();
+                } else {
+                    currentQuestion++;
+                    isCurrentQuestionDone = false;
+                    isCurrentQuestionAnswered = false;
+                    currentQuestionAnswer = null;
                 }
-                currentQuestion++;
-                isCurrentQuestionDone = false;
-                isCurrentQuestionAnswered = false;
-                currentQuestionAnswer = null;
             }, 300);
         }, 2700);
+
     }
     function handleReload(){
         isGameFinished = false;
         points = 0;
         currentQuestion = 1;
         isCurrentQuestionDone = false;
+        isCurrentQuestionAnswered = false;
         currentQuestionAnswer = null;
         resultShare = null;
     }
@@ -299,7 +306,9 @@
 <div class="game">
     {#if !isGameStarted}
         <div class="game__layer game__layer_intro">
-            <div class="game__intro-photo"></div>
+            <figure>
+                <img src={introImg} alt="">
+            </figure>
             <p>А насколько хорошо вы знаете советское кино?</p>
             <p>Проверьте себя на знание цитат из любимых фильмов.</p>
             <p><b>Камера! Мотор! Поехали!</b></p>

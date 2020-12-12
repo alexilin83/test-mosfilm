@@ -171,7 +171,9 @@
                 <div class="game__quote-photo" transition:fly="{{x: 100, opacity: 0, duration: 1000, easing: quintOut}}"></div>
             </div>
         {:else}
-            <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, start: .5, easing: quintOut}}"></div>
+            {#if !isCurrentQuestionDone}
+                <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" transition:scale="{{duration: 1000, opacity: 0, start: .5, easing: quintOut}}"></div>
+            {/if}
         {/if}
     </header>
     <footer class="game__footer">
