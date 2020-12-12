@@ -5,16 +5,16 @@
     "test": "echo \"This template does not include a test runner by default.\" && exit 1"
   },
   "devDependencies": {
-    "@snowpack/plugin-svelte": "^3.3.0",
-    "@snowpack/plugin-webpack": "^2.1.1",
+    "@snowpack/plugin-svelte": "^3.4.0",
+    "@snowpack/plugin-webpack": "^2.2.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
-    "sass": "^1.29.0",
-    "snowpack": "^2.17.1",
+    "sass": "^1.30.0",
+    "snowpack": "^2.18.3",
     "snowpack-plugin-imagemin": "^1.0.0"
   },
   "dependencies": {
-    "svelte": "^3.30.1"
+    "svelte": "^3.31.0"
   },
   "browserslist": [
     "defaults",
