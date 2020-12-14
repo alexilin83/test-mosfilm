@@ -246,7 +246,6 @@
 </style>
 
 <script>
-    import lozad from 'lozad';
     import Question from './Question.svelte';
     import { onMount, afterUpdate } from 'svelte';
     import settings from '../settings';

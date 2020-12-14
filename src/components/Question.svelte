@@ -184,7 +184,7 @@
     }
 </style>
 <script>
-    import { scale, fly, fade } from 'svelte/transition';
+    import { scale, fly } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
     import { createEventDispatcher } from 'svelte';
 
