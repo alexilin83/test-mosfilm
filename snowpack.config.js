@@ -8,6 +8,7 @@ module.exports = {
     '@snowpack/plugin-webpack',
   ],
   buildOptions: {
-    clean: true
+    clean: true,
+    baseUrl: './'
   }
 };
