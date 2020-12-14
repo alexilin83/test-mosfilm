@@ -131,6 +131,7 @@
             margin: 0 20px 0 0;
             font-weight: normal;
             font-size: 12px;
+            text-transform: uppercase;
         }
         .game__layer_intro & {
             margin: 84px 0 0;
@@ -213,6 +214,29 @@
             font-size: 10px;
             h3 {
                 margin: 0 0 10px;
+            }
+        }
+    }
+    @media screen and (max-device-width: 767px) and (orientation: portrait) {
+        .game__layer {
+            padding: 0 0 16px;
+        }
+        :global(.game__btn) {
+            padding: 1em 1em;
+            font-size: 14px;
+        }
+        :global(.game__title) {
+            min-height: 60vh;
+            max-height: 50vmin
+        }
+        .game__score {
+            margin-bottom: 0;
+            font-size: 18px;
+        }
+        .game__result {
+            padding: 0 1em;
+            :global(p) {
+                font-size: 14px;
             }
         }
     }
@@ -342,7 +366,7 @@
                     </div>
                 </header>
                 <div class="game__share">
-                    <h3>ПОДЕЛИТЬСЯ РЕЗУЛЬТАТОМ:</h3>
+                    <h3>проверить друзей:</h3>
                     <div class="share" bind:this={resultShareEl}></div>
                 </div>
                 <button class="game__btn game__btn_lg game__btn_reload" on:click={handleReload}>Пройти еще раз</button>
