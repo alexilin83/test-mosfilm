@@ -14,6 +14,7 @@
     "snowpack-plugin-imagemin": "^1.0.0"
   },
   "dependencies": {
+    "lozad": "^1.16.0",
     "svelte": "^3.31.0"
   },
   "browserslist": [

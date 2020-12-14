@@ -124,12 +124,12 @@
     }
     @for $i from 1 through 12 {
         .game__question-comment_test-1.game__question-comment_#{$i} {
-            background-image: url('/dist/images/poster-1-#{$i}.jpg');
+            background-image: url('/dist/images/poster-1-#{$i}-min.jpg');
         }
     }
     @for $i from 1 through 13 {
         .game__question-comment_test-2.game__question-comment_#{$i} {
-            background-image: url('/dist/images/poster-2-#{$i}.jpg');
+            background-image: url('/dist/images/poster-2-#{$i}-min.jpg');
         }
     }
     @media (max-width: 1279px) {

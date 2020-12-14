@@ -134,6 +134,12 @@
             margin: 84px 0 0;
         }
     }
+    .game__lazy-loader {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        opacity: 0;
+    }
     .game :global(.ya-share2__list.ya-share2__list_direction_horizontal) {
         margin: 0;
     }
@@ -240,12 +246,14 @@
 </style>
 
 <script>
+    import lozad from 'lozad';
     import Question from './Question.svelte';
-    import { afterUpdate } from 'svelte';
+    import { onMount, afterUpdate } from 'svelte';
     import settings from '../settings';
 
     export let test;
     export let questions;
+    export let posters;
     let isGameStarted = false;
     let isGameFinished = false;
     let currentQuestion = 1;
@@ -257,6 +265,13 @@
     let result = '';
     let resultShare;
     let resultShareEl;
+
+    let images = [];
+
+    onMount(() => {
+        preload(posters);
+    })
+
     afterUpdate(() => {
         if (isGameFinished && !resultShare) {
             resultShare = Ya.share2(resultShareEl, {
@@ -270,6 +285,13 @@
             });
         }
     });
+
+    function preload(urls) {
+        for (var i = 0; i < urls.length; i++) {
+            images[i] = new Image();
+            images[i].src = urls[i];
+        }
+    }
     
     function handleStart(){
         isGameStarted = true;
@@ -368,4 +390,5 @@
             {/if}
         </div>
     {/if}
+    <div class="game__lazy-loader lozad" data-background-image="assets/poster-1-1-min.jpg,assets/poster-1-2-min.jpg"></div>
 </div>

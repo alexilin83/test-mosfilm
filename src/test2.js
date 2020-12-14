@@ -122,6 +122,21 @@ const app = new App({
                 ],
                 answer: 0
             }
+        ],
+        posters: [
+            'assets/poster-2-1-min.jpg',
+            'assets/poster-2-2-min.jpg',
+            'assets/poster-2-3-min.jpg',
+            'assets/poster-2-4-min.jpg',
+            'assets/poster-2-5-min.jpg',
+            'assets/poster-2-6-min.jpg',
+            'assets/poster-2-7-min.jpg',
+            'assets/poster-2-8-min.jpg',
+            'assets/poster-2-9-min.jpg',
+            'assets/poster-2-10-min.jpg',
+            'assets/poster-2-11-min.jpg',
+            'assets/poster-2-12-min.jpg',
+            'assets/poster-2-13-min.jpg'
         ]
     }
 })

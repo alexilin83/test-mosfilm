@@ -5,7 +5,9 @@ module.exports = {
   },
   plugins: [
     '@snowpack/plugin-svelte',
-    '@snowpack/plugin-webpack',
+    ['@snowpack/plugin-webpack', {
+      outputPattern: {assets: 'assets/[name].[ext]'}
+    }]
   ],
   buildOptions: {
     clean: true,
