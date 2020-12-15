@@ -221,7 +221,7 @@
             </div>
         {:else}
             {#if !isCurrentQuestionDone}
-                <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" transition:scale="{{duration: 1000, opacity: 0, start: .5, easing: quintOut}}"></div>
+                <div class="game__question-comment game__question-comment_test-{test} game__question-comment_{currentQuestion}" in:scale="{{duration: 1000, opacity: 0, start: .5, easing: quintOut}}" out:scale="{{duration: 300, opacity: 0, start: .5, easing: quintOut}}"></div>
             {/if}
         {/if}
     </header>
